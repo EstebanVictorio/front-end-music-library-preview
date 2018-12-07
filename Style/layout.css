@@ -1,0 +1,49 @@
+.home{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+.current-song{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.playlist{
+  margin: 5px;
+}
+
+.playlist-h{
+  width: calc(100% - 10px);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+
+.showcase{
+  width: 150px!important;
+  height: 200px!important;
+  margin: 0 10px;
+  padding: 0;
+  font-size: 2px;
+  text-align: center;
+  border-radius: 2px;
+  background-color: darkslategray;
+}
+
+.showcase > img{
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.showcase > h2, .showcase > h3{
+  margin: 0;
+  color: whitesmoke;
+}
+4

@@ -1,0 +1,29 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #17181C;
+  color: #61DAFB;
+  font-weight: bold;
+  font-family: 'Consolas';
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+h2,p{
+  margin: 0;
+}
+
+
+#app{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}

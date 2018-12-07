@@ -1,0 +1,51 @@
+{
+  "name": "front-end-music-library-preview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.jsx",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "css-loader": "^1.0.1",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "query-string": "^6.2.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-helmet": "^5.2.0",
+    "react-loader-spinner": "^2.2.0",
+    "react-redux": "^5.1.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "style-loader": "^0.23.1",
+    "styled-components": "^4.1.2",
+    "swiper": "^4.4.2",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "html-webpack-plugin": "^3.2.0",
+    "isomorphic-style-loader": "^4.0.0",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "webpack-dev-server",
+    "buildClient": "webpack --verbose --config webpack.config.client.js",
+    "buildServer": "webpack --verbose --config webpack.config.server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EstebanVictorio/front-end-music-library-preview.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EstebanVictorio/front-end-music-library-preview/issues"
+  },
+  "homepage": "https://github.com/EstebanVictorio/front-end-music-library-preview#readme"
+}

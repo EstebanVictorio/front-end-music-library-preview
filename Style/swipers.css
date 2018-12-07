@@ -1,0 +1,13 @@
+#home-playlist{
+  width: 800px;
+  height: 300px;
+}
+
+#home-playlist > .swiper-wrapper > .swiper-slide{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
