@@ -1,7 +1,7 @@
 const CLIENT_ID = '';
 const RESPONSE_TYPE = '';
 const REDIRECT_URI = '';
-const SCOPES = ';
+const SCOPES = '';
 const AUTH_ATTEMPTS = 3;
 
 export {
