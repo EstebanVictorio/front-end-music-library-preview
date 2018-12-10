@@ -11,3 +11,5 @@ legal notices.
 All credits of the API goes to Spotify and their agreements to their respective content-artist agreements.
 
 Any questions that you may have are welcome and I'll try to answer as best as I can regarding the implementation.
+
+##### NOTE: Images and URL resources are property of their respective owners on Spotify Platform & content artists.
