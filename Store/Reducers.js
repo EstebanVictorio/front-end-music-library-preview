@@ -1,34 +1,67 @@
-import {SET_CURRENT_SONG, SET_PLAYLIST,SET_PLAYLIST_PLACEHOLDER,IS_PLAYLIST_FETCHING, PLAYLIST_FETCH_DONE} from './ActionTypes';
+import {
+  SET_TOKEN,
+  SET_ERROR,
+  SET_PLAYLIST,
+  SET_CURRENT_SONG,
+  FETCH_PLAYLIST_ASYNC,
+  ENABLE_REFRESH_BUTTON,
+  DISABLE_REFRESH_BUTTON,
+  FETCH_PLAYLIST_ASYNC_END
+} from './ActionTypes';
 
 
-const fetching = (state = false, action) => {
+const refreshButtonEnabled = (state = false, action) => {
+    switch (action.type) {
+      case ENABLE_REFRESH_BUTTON:
+        return true;
+      case DISABLE_REFRESH_BUTTON:
+        return false;
+      default:
+        return state;
+
+    }
+};
+
+const isPlaylistFetching = (state = false, action) => {
   switch(action.type){
-    case IS_PLAYLIST_FETCHING:
-      state = action.fetching;
-      return state;
+    case FETCH_PLAYLIST_ASYNC:
+      return true;
+    case FETCH_PLAYLIST_ASYNC_END:
+      return false;
     default:
       return state;
   }
 };
+
+const token = (state = 'none', action) => {
+  switch (action.type) {
+    case SET_TOKEN:
+      return action.token;
+    default:
+      return state;
+  }
+};
+
+const fetchError =
+  (state = {errorStatus:'---', errorMessage:'---'}, action) => {
+    switch (action.type) {
+      case SET_ERROR:
+        return {
+          errorStatus: action.errorStatus,
+          errorMessage: action.errorMessage
+        };
+        break;
+      default:
+        return state;
+      }
+    };
 
 const playlist = (state = [], action) => {
   switch(action.type){
     case SET_PLAYLIST:
       return action.playlist;
-    case SET_PLAYLIST_PLACEHOLDER:
-      return action.placeholder;
     default:
       return state;
-  }
-};
-
-const pendingAdditions = (state = [], action) => {
-  switch (action.type) {
-    case expression:
-
-      break;
-    default:
-
   }
 };
 
@@ -41,9 +74,11 @@ const currentSong = (state = {}, action) => {
   }
 };
 
-
 export default {
-  fetching,
   playlist,
-  currentSong
+  fetchError,
+  currentSong,
+  isPlaylistFetching,
+  refreshButtonEnabled,
+  token
 };

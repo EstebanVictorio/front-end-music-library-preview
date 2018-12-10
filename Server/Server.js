@@ -1,9 +1,10 @@
 import Express from 'express';
 import BodyParser from 'body-parser';
 import {index, auth, fetchPlaylist} from './RouteActions';
-
+import {enableCORS} from './Middleware';
 function withActions(server){
   let router = Express.Router();
+  router.use(enableCORS);
   router.get('/',index);
   router.get('/auth',auth);
   router.post('/getPlaylist',fetchPlaylist);
@@ -13,6 +14,7 @@ function withActions(server){
 
 function withStaticResources(server){
   server.use(BodyParser.urlencoded({extended:false}));
+  server.use(BodyParser.json());
   server.use('/dist',Express.static('dist'));
   server.use('/Style',Express.static('Style'));
   server.use('/Images',Express.static('Images'));
@@ -21,9 +23,8 @@ function withStaticResources(server){
 
 function getExpressServer(){
   let expressAppServer = Express();
-  expressAppServer.use(BodyParser.json());
-  expressAppServer = withActions(expressAppServer);
   expressAppServer = withStaticResources(expressAppServer);
+  expressAppServer = withActions(expressAppServer);
   return expressAppServer;
 }
 

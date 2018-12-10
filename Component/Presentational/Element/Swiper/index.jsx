@@ -1,16 +1,31 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
+
 export default function Swiper(props){
-  let {component,onClick, name = '', elements = null} = props;
+  let {
+    component,
+    onClick,
+    translator,
+    name = '',
+    elements = null,
+    addOnComponent,
+    addOnText,
+    addOnAction
+  } = props;
   let Component = component;
-  console.log('render');
   return (
     <div id={name} className="swiper-container">
         <div className="swiper-wrapper">
           {
-            elements.map(element => <div key={element.id}
+            elements.map(element =>
+              <div key={typeof element.id === 'undefined'? '':element.id}
               className="swiper-slide">
-                <Component onClick={onClick} {...element}/>
+                <Component
+                  translator={translator}
+                  addOnComponent={addOnComponent}
+                  addOnText={addOnText}
+                  addOnAction={addOnAction}
+                  onClick={onClick} {...element}/>
               </div>)
           }
         </div>

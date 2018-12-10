@@ -1,13 +1,9 @@
-const CLIENT_ID = '';
-const RESPONSE_TYPE = '';
-const REDIRECT_URI = '';
-const SCOPES = '';
-const AUTH_ATTEMPTS = 3;
+const CLIENT_ID = 'your_spotify_app_client_id';
+const CLIENT_SECRET = 'your_spotify_app_client_secret';
+const ATTEMPTS = 3;
 
-export {
+export default{
   CLIENT_ID,
-  RESPONSE_TYPE,
-  REDIRECT_URI,
-  SCOPES,
-  AUTH_ATTEMPTS
+  CLIENT_SECRET,
+  ATTEMPTS
 };

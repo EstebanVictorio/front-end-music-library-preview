@@ -25,6 +25,7 @@ let config = {
       Presentational: path.resolve(__dirname,'Component') + '/Presentational',
       Settings: path.resolve(__dirname,'Settings'),
       Store: path.resolve(__dirname,'Store'),
+      Utils: path.resolve(__dirname,'Utils')
     }
   },
   output: {
@@ -40,7 +41,8 @@ let config = {
           options: {
             presets: ['babel-preset-env','babel-preset-react'],
             plugins: [
-              require('babel-plugin-transform-runtime')
+              require('babel-plugin-transform-runtime'),
+              require('babel-plugin-transform-object-rest-spread'),
             ]
           }
         }

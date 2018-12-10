@@ -9,7 +9,7 @@ let config = {
     __filename: true
   },
   entry: {
-    server: path.resolve(__dirname, 'Server') + '/index.jsx'
+    server: path.resolve(__dirname, 'Server') + '/index.js'
   },
   resolve: {
     extensions: ['.js','.jsx'],
@@ -19,7 +19,8 @@ let config = {
       Settings: path.resolve(__dirname,'Settings'),
       Store: path.resolve(__dirname,'Store'),
       Server: path.resolve(__dirname,'Server'),
-      Controller: path.resolve(__dirname,'Server') + '/Controller'
+      Controller: path.resolve(__dirname,'Controller'),
+      Utils: path.resolve(__dirname,'Utils'),
     }
   },
   output: {
@@ -35,7 +36,8 @@ let config = {
           options: {
             presets: ['babel-preset-env','babel-preset-react'],
             plugins: [
-              require('babel-plugin-transform-runtime')
+              require('babel-plugin-transform-runtime'),
+              require('babel-plugin-transform-object-rest-spread')
             ]
           }
         }

@@ -5,7 +5,10 @@ import { Provider } from 'react-redux';
 import HomeContainer from 'Container/Page/HomeContainer';
 import FileSystem from 'fs';
 import Path from 'path';
-
+import i18next from 'i18next';
+import {withI18n, reactI18nextModule, withNamespaces} from 'react-i18next';
+import {translationSettings} from 'Settings/Translation';
+import {getServerLanguage} from 'Utils/LanguageSelector';
 export default class Index{
   constructor(request,response){
     this.request = request;
@@ -20,18 +23,35 @@ export default class Index{
     return typeof this.request.query.access_token !== undefined;
   }
 
+  getLanguageSettings(){
+    let language = getServerLanguage();
+    let newTranslationSettings = {
+      ...translationSettings,
+      lng: language,
+      defaultNS: language
+    };
+    return newTranslationSettings;
+  }
+
   getIndexMarkUp(){
-    return <Provider store={Store}>
-      <HomeContainer/>
+
+    i18next.use(reactI18nextModule).init(this.getLanguageSettings());
+
+    let App = ({t}) => <Provider store={Store}>
+      <HomeContainer t={t}/>
     </Provider>;
+
+    let TranslatedApp = withNamespaces()(App);
+
+    return TranslatedApp;
   }
 
   handleOnRead(error,data){
     if(error){
       this.error = error;
     }else{
-      let markup = this.getIndexMarkUp();
-      let app = ReactDOMServer.renderToString(markup);
+      let TranslatedApp = this.getIndexMarkUp();
+      let app = ReactDOMServer.renderToString(<TranslatedApp/>);
       this.html =
         data.replace(this.htmlStringTemplate,`<div id="#app">${app}</div>`);
     }

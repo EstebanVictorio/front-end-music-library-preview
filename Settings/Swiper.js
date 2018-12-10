@@ -5,7 +5,7 @@ const HomePlaylist =
       onlyInViewport: true,
     },
     effect: 'coverflow',
-    grabCursor: true,
+    grabCursor: false,
     centeredSlides: true,
     slidesPerView: 'auto',
     coverflowEffect: {
@@ -18,6 +18,11 @@ const HomePlaylist =
     pagination: {
       el: '.swiper-pagination',
     },
+    on: {
+      slideChange: function () {
+        console.log('slidechange: ' + this.activeIndex);
+      }
+    }
   };
 
 export {

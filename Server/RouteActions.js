@@ -9,19 +9,12 @@ function verifyToken(req, res){
 
 function index(req, res){
   let controller = new IndexController(req, res);
-  if(!controller.canUserAccess()){
-    console.log('Redirecting User to authenticate with fresh token....');
-    res.redirect('/auth');
-  }else{
-    console.log('User access!');
-    controller.render();
-  }
+  controller.render();
 }
 
 async function fetchPlaylist(req,res){
-  console.log('Start playlist fetch...');
-  console.log('Body:');
-  console.log(req.body);
+  let token = typeof req.body !== 'undefined' &&
+    typeof req.body.token !== 'undefined' ? req.body.token : 'none';
   let controller = new SpotifyController(req.body.token);
   let playlistResponse = await controller.fetchPlaylist();
   res.send(playlistResponse);

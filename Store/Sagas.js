@@ -1,19 +1,37 @@
 import {put,call,takeEvery, all} from 'redux-saga/effects';
-import {setPlaylist} from './Actions';
 import QueryString from 'query-string';
+import {
+  setPlaylist,
+  setFetchError,
+  setCurrentSong,
+  fetchPlaylistAsyncEnd,
+  disableRefreshButton,
+  enableRefreshButton
+} from './Actions';
+import {headers} from 'Settings/Request';
+import {getFetchConfigWithToken} from 'Utils/RequestHelper';
+
 function * fetchPlaylistAsync(){
-  let playlist = null;
-  let headers = new Headers({'Content-Type':'application/json'});
-  let token = QueryString.parse(window.location.search).access_token;
-  let fetchConfig =
-    {
-      method: 'POST',
-      body: JSON.stringify({token:token}),
-      headers: headers
+  let spotifyResponse = null;
+  let queryStringParams = QueryString.parse(window.location.search);
+  yield put(disableRefreshButton());
+  let token = typeof queryStringParams.access_token !== 'undefined' ?
+  queryStringParams.access_token:'none';
+  let fetchConfig = getFetchConfigWithToken(token,headers);
+  yield fetch('/getPlaylist',fetchConfig)
+    .then(response => response.json()).then(json => spotifyResponse = json);
+  if(spotifyResponse.songs.length === 0){
+    let error = {
+      errorStatus:spotifyResponse.errorStatus,
+      errorMessage:spotifyResponse.errorMessage
     };
-  playlist = yield fetch('http://localhost:8888/getPlaylist',fetchConfig)
-    .then(response => response.json()).then(json => json);
-  yield put(setPlaylist(playlist));
+    yield put(setFetchError(error));
+  }else{
+    yield put(setCurrentSong(spotifyResponse.songs[0]));
+  }
+  yield put(setPlaylist(spotifyResponse));
+  yield put(fetchPlaylistAsyncEnd());
+  yield put(enableRefreshButton());
 }
 
 function * bootstrapSagaNotice(){

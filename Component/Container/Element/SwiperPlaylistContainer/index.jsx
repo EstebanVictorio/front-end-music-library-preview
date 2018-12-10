@@ -2,36 +2,53 @@ import React from 'react';
 import Swiper from 'Presentational/Element/Swiper';
 import iDangerousSwiper from 'swiper/dist/js/swiper.esm.bundle';
 import Loader from 'react-loader-spinner';
-
 class SwiperPlaylistContainer extends React.Component{
   constructor(props){
     super(props);
     this.swiper = null;
-    this.state = {
-      playlist:
-        [
-          {id:1,albumArt:'',name:'---', author:'---'}
-        ],
-      swiper: null
-      };
+    this.oldActiveIndex = 0;
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.playlist !== prevProps.playlist){
-      this.swiper =
-        new iDangerousSwiper(`#${this.props.name}`,this.props.settings);    
+    if(!this.props.isPlaylistFetching){
+      if(this.props.playlist.length > 0){
+        this.oldActiveIndex = this.swiper !== null ? this.swiper.clickedIndex:0;
+        let finalSettings =
+          {
+            ...this.props.settings,
+            initialSlide: this.oldActiveIndex
+          };
+        this.swiper =
+          new iDangerousSwiper(`#${this.props.name}`,finalSettings);
+      }else{
+        this.swiper = null;
+      }
     }
   }
 
+  getPlaceholder(){
+    if(this.props.isPlaylistFetching){
+      return <Loader type="Oval" width="50" height="100" color="#61DAFB"/>;
+    }
+    return <div>
+        {this.props.fetchError.errorMessage} -
+        {typeof this.props.fetchError.errorStatus != 'undefined' ?
+          'Error Code:':''}
+        {this.props.fetchError.errorStatus}
+      </div>;
+  }
+
   render(){
-    console.log('Playlist');
-    console.log(this.props.playlist.length);
     return (
-      this.props.playlist.length > 0 ?
-        <Swiper name={this.props.name}
+        !this.props.isPlaylistFetching && this.props.playlist.length > 0 ?
+        <Swiper
+          name={this.props.name}
           elements={this.props.playlist}
-          component={this.props.component}/> :
-          <Loader type="Oval" width="50" height="100" color="#61DAFB"/>
+          component={this.props.component}
+          translator={this.props.translator}
+          addOnComponent='button'
+          addOnText='Set'
+          addOnAction={this.props.setCurrentSong}/> : this.getPlaceholder()
     );
   }
 }

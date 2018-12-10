@@ -7,7 +7,8 @@ import {
   endPlaylistFetch,
   setPlaylistPlaceholder,
   setPlaylist,
-  setCurrentSong
+  setCurrentSong,
+  setTranslator
 } from './Actions';
 let sagaMiddleware = createSagaMiddleware();
 let Store = createStore(combineReducers(Reducers),applyMiddleware(sagaMiddleware));
@@ -18,5 +19,6 @@ export {
   endPlaylistFetch,
   setPlaylistPlaceholder,
   setPlaylist,
-  setCurrentSong
+  setCurrentSong,
+  setTranslator
 };

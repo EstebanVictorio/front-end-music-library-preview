@@ -4,6 +4,24 @@
   height: 100%;
 }
 
+#refresh-button{
+  background-color: #62b562;
+  color: white;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+  padding: 2.5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+}
+
+#refresh-button:hover{
+  opacity: 0.5;
+}
 
 .current-song{
   display:flex;
@@ -28,7 +46,7 @@
 
 .showcase{
   width: 150px!important;
-  height: 200px!important;
+  height: 220px!important;
   margin: 0 10px;
   padding: 0;
   font-size: 2px;
@@ -37,13 +55,58 @@
   background-color: darkslategray;
 }
 
-.showcase > img{
+.showcase > a > img{
   max-width: 150px;
-  max-height: 150px;
+  max-height: 200px;
 }
 
-.showcase > h2, .showcase > h3{
-  margin: 0;
-  color: whitesmoke;
+.showcase-button{
+  background-color: #62b562;
+  color: white;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 2px;
+  width: 120px;
+  height: 20px;
+  padding: 2.5px;
 }
-4
+
+.track, .artist{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.track > h2, .artist > a{
+  max-width: 140px;
+  color: whitesmoke;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artist > a{
+  margin: 10px 0;
+  color: cyan!important;
+  text-decoration: none;
+}
+
+
+.disclaimer-info{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 2px;
+}
+
+.disclaimer-info > img{
+  width: 70px;
+  height: 21px;
+  margin: 12.5px;
+}
