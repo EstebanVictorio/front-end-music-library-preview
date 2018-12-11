@@ -87,7 +87,6 @@
 }
 
 .artist > a{
-  margin: 10px 0;
   color: cyan!important;
   text-decoration: none;
 }
@@ -102,11 +101,95 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  font-size: 2px;
+  font-size: 6px;
 }
 
 .disclaimer-info > img{
   width: 70px;
   height: 21px;
   margin: 12.5px;
+}
+
+@media (max-width: 239px){
+  .swiper-wrapper{
+    width: 100px;
+  }
+
+  .track{
+    font-size: 5.5em;
+  }
+
+  .artist{
+    font-size: 7em;
+  }
+}
+
+
+@media (min-width:240px) and (max-width: 359px){
+  .track{
+    font-size: 5.5em;
+  }
+
+  .artist{
+    font-size: 6.5em;
+  }
+
+  .disclaimer-info{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-items: center;
+    font-size: 8px;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  .disclaimer-info > img{
+    margin: 0;
+  }
+}
+
+
+@media (min-width: 360px) and (max-width: 479px){
+  .track{
+    font-size: 5em;
+  }
+
+  .artist{
+    font-size: 6em;
+  }
+}
+
+
+@media (min-width: 480px) and (max-width:639px){
+  .track{
+    font-size: 4.5em;
+  }
+
+  .artist{
+    font-size: 6em;
+  }
+}
+
+@media (min-width: 640px){
+  .track{
+    font-size: 4em;
+  }
+
+  .artist{
+    font-size: 6em;
+  }
+}
+
+@media (max-width: 799px){
+  #home-playlist{
+    width: 100%;
+  }
+}
+
+@media (min-width: 800px){
+  #home-playlist{
+    width: 800px;
+  }
 }
